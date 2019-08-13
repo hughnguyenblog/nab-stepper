@@ -3,10 +3,11 @@ import styled from 'styled-components';
 import { FaBars, FaPlusCircle } from 'react-icons/fa';
 
 export class Header extends Component {
+	openSidebar = () => {};
 	render() {
 		return (
 			<NavWrapper>
-				<FaBars className="icon-sidebar" />
+				<FaBars className="icon-sidebar" onClick={this.openSidebar} />
 				<h1 className="title">Sample page title</h1>
 				<FaPlusCircle className="icon-newTitle" />
 				<button className="btnAdd">ADD NEW TITLE</button>
