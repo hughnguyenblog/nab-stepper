@@ -10,27 +10,36 @@ const initVar = {
 
 export class Stepper extends Component {
 	state = {
+		contentIsActive: '',
 		data: [
 			{
 				id: 21231,
 				lable: 'Supplier',
 				isVisited: true,
-				isActive: true
+				isActive: true,
+				content:
+					'Super Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ultrices ultricies sodales. Nullam consectetur luctus ligula, at iaculis ante cursus at. Aenean vitae nibh ante. Etiam metus ligula, mattis vitae malesuada eget, molestie feugiat nibh. Donec imperdiet ut urna quis condimentum. Nunc eget ullamcorper dolor. Praesent mollis quam id orci placerat malesuada. Maecenas imperdiet ac nibh vel blandit. Mauris dictum dapibus ligula a blandit. Sed gravida scelerisque venenatis. Quisque et metus nisi. Maecenas quis malesuada nunc. Donec diam erat, finibus volutpat pretium et, condimentum nec est. Sed molestie in eros non egestas. Maecenas lacus tortor, venenatis vel molestie in, fringilla at neque. Curabitur tempus condimentum magna, non porta enim finibus quis. Vivamus tempus dui vel justo ornare feugiat. Vivamus '
 			},
 			{
 				id: 2443123,
 				lable: 'Basic Information',
-				isVisited: false
+				isVisited: false,
+				content:
+					'Basic Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ultrices ultricies sodales. Nullam consectetur luctus ligula, at iaculis ante cursus at. Aenean vitae nibh ante. Etiam metus ligula, mattis vitae malesuada eget, molestie feugiat nibh. Donec imperdiet ut urna quis condimentum. Nunc eget ullamcorper dolor. Praesent mollis quam id orci placerat malesuada. Maecenas imperdiet ac nibh vel blandit. Mauris dictum dapibus ligula a blandit. Sed gravida scelerisque venenatis. Quisque et metus nisi. Maecenas quis malesuada nunc. Donec diam erat, finibus volutpat pretium et, condimentum nec est. Sed molestie in eros non egestas. Maecenas lacus tortor, venenatis vel molestie in, fringilla at neque. Curabitur tempus condimentum magna, non porta enim finibus quis. Vivamus tempus dui vel justo ornare feugiat. Vivamus '
 			},
 			{
 				id: 3545234,
 				lable: 'Language',
-				isVisited: false
+				isVisited: false,
+				content:
+					'Language Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ultrices ultricies sodales. Nullam consectetur luctus ligula, at iaculis ante cursus at. Aenean vitae nibh ante. Etiam metus ligula, mattis vitae malesuada eget, molestie feugiat nibh. Donec imperdiet ut urna quis condimentum. Nunc eget ullamcorper dolor. Praesent mollis quam id orci placerat malesuada. Maecenas imperdiet ac nibh vel blandit. Mauris dictum dapibus ligula a blandit. Sed gravida scelerisque venenatis. Quisque et metus nisi. Maecenas quis malesuada nunc. Donec diam erat, finibus volutpat pretium et, condimentum nec est. Sed molestie in eros non egestas. Maecenas lacus tortor, venenatis vel molestie in, fringilla at neque. Curabitur tempus condimentum magna, non porta enim finibus quis. Vivamus tempus dui vel justo ornare feugiat. Vivamus '
 			},
 			{
 				id: 423332,
 				lable: 'Sample',
-				isVisited: false
+				isVisited: false,
+				content:
+					'Sample Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ultrices ultricies sodales. Nullam consectetur luctus ligula, at iaculis ante cursus at. Aenean vitae nibh ante. Etiam metus ligula, mattis vitae malesuada eget, molestie feugiat nibh. Donec imperdiet ut urna quis condimentum. Nunc eget ullamcorper dolor. Praesent mollis quam id orci placerat malesuada. Maecenas imperdiet ac nibh vel blandit. Mauris dictum dapibus ligula a blandit. Sed gravida scelerisque venenatis. Quisque et metus nisi. Maecenas quis malesuada nunc. Donec diam erat, finibus volutpat pretium et, condimentum nec est. Sed molestie in eros non egestas. Maecenas lacus tortor, venenatis vel molestie in, fringilla at neque. Curabitur tempus condimentum magna, non porta enim finibus quis. Vivamus tempus dui vel justo ornare feugiat. Vivamus '
 			}
 		]
 	};
@@ -52,30 +61,35 @@ export class Stepper extends Component {
 			data[i].isActive = false;
 		}
 		data[indexSelected].isActive = true;
-		this.setState({});
+		this.setState({ contentIsActive: data[indexSelected].content });
 	};
 	render() {
 		return (
-			<StepperWrapper>
-				<ul>
-					{this.state.data.map((item, index) => {
-						return (
-							<StepWrapper
-								id={item.id}
-								key={item.id}
-								isActive={item.isActive}
-								isVisited={item.isVisited}
-								onClick={() => this.selectItem(index)}
-							>
-								{item.lable}
-							</StepWrapper>
-						);
-					})}
-				</ul>
-			</StepperWrapper>
+			<BodyWrapper>
+				<StepperWrapper>
+					<ul>
+						{this.state.data.map((item, index) => {
+							return (
+								<StepWrapper
+									id={item.id}
+									key={item.id}
+									isActive={item.isActive}
+									isVisited={item.isVisited}
+									onClick={() => this.selectItem(index)}
+								>
+									{item.lable}
+								</StepWrapper>
+							);
+						})}
+					</ul>
+				</StepperWrapper>
+				<p>{this.state.contentIsActive === '' ? this.state.data[0].content : this.state.contentIsActive}</p>
+			</BodyWrapper>
 		);
 	}
 }
+
+const BodyWrapper = styled.section`width: 100%;`;
 
 const StepperWrapper = styled.div`
 	width: 100%;
